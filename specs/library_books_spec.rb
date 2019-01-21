@@ -1,24 +1,7 @@
-# Extension:
-#
-# Model a Library as a class.
-#
-# Create a class for a Library that has an array of books. Each book should be a hash with a title, which
-# is a string, and rental details, which is another hash with a student name and due date.
-# This should look something like:
-#
-# {
-#   title: "lord_of_the_rings",
-#   rental_details: {
-#    student_name: "Jeff",
-#    date: "01/12/16"
-#   }
-# }
-
-
 # Create a getter for the books
 # Create a method that takes in a book title and returns all of the information about that book.
 # Create a method that takes in a book title and returns only the rental details for that book.
-# Create a method that takes in a book title and adds it to our book list (add a new hash for
+# Create a method that takes in a book and adds it to our book list (add a new hash for
 # the book with the student name and date being left as empty strings)
 # Create a method that changes the rental details of a book by taking in the title
 # of the book, the student renting it and the date it's due to be returned.
@@ -27,52 +10,67 @@ require('minitest/autorun')
 require('minitest/rg')
 require_relative('../library_books')
 
-class TestTeam < MiniTest::Test
-
-
+class TestLibraryBooks < MiniTest::Test
 
   def setup
-
+    # set up an array of books
     @books = [
       {
-          title: "lord of the rings",
-          rental_details: {
+        title: "lord of the rings",
+        rental_details: {
           student_name: "Jeff",
           date: "01/12/16"
         }
       },
       {
-          title: "a fine balance",
-          rental_details: {
+        title: "a fine balance",
+        rental_details: {
           student_name: "Lucy",
           date: "01/12/17"
         }
       }
     ]
+
+    # create a new instance of the Library class
     @my_books = Library.new(@books)
-    p @my_books
+
   end
 
   def test_get_book_dets
     book_dets = @my_books.get_book_dets("lord of the rings")
-    # assert_equal("Jeff", book_dets[:rental_details][:student_name])
+
     assert_equal({
-        title: "lord of the rings",
-        rental_details: {
+      title: "lord of the rings",
+      rental_details: {
         student_name: "Jeff",
         date: "01/12/16"
       }
-    }, book_dets)
+      }, book_dets)
+    end
 
-  end
-
-  def test_get_rental_dets
-    rental_book_dets = @my_books.get_rental_dets("a fine balance")
-    # assert_equal("Jeff", book_dets[:rental_details][:student_name])
-    assert_equal({
+    def test_get_rental_dets
+      rental_book_dets = @my_books.get_rental_dets("a fine balance")
+      assert_equal({
         student_name: "Lucy",
         date: "01/12/17"
-      }, rental_book_dets)
-  end
+        }, rental_book_dets)
+      end
 
-end
+      def test_add_book
+        @my_books.add_book("Pride and Prejudice")
+        assert_equal(3, @books.length)
+      end
+
+      def test_change_rental_dets
+        @my_books.change_rental_dets()
+        assert_equal({
+          title: "a fine balance",
+          rental_details: {
+            student_name: "Julia",
+            date: "01/01/19"
+          }
+        })
+
+      end
+
+    end # end of the test class
