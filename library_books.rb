@@ -27,11 +27,9 @@ class Library
 
      book = Hash.new()
      book[:title] = book_title
+     book[:rental_details] = [student_name: "", date: ""] #add empty fields
 
-     book[:rental_details]= [student_name: "", date: ""]
-p book
      @books << book
-
   end
 
   def change_rental_dets(book_title, student, date)

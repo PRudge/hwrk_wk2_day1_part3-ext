@@ -1,11 +1,3 @@
-# Create a getter for the books
-# Create a method that takes in a book title and returns all of the information about that book.
-# Create a method that takes in a book title and returns only the rental details for that book.
-# Create a method that takes in a book and adds it to our book list (add a new hash for
-# the book with the student name and date being left as empty strings)
-# Create a method that changes the rental details of a book by taking in the title
-# of the book, the student renting it and the date it's due to be returned.
-
 require('minitest/autorun')
 require('minitest/rg')
 require_relative('../library_books')
@@ -60,16 +52,17 @@ class TestLibraryBooks < MiniTest::Test
   def test_add_book
     @my_books.add_book("Pride and Prejudice","","")
 
-
-    assert_equal([{:title=>"lord of the rings",
+    assert_equal([
+      {:title=>"lord of the rings",
        :rental_details=>{:student_name=>"Jeff",
          :date=>"01/12/16"}},
-          {:title=>"a fine balance",
+      {:title=>"a fine balance",
             :rental_details=>{:student_name=>"Lucy",
                :date=>"01/12/17"}},
-          {:title=>"Pride and Prejudice",
-            :rental_details=>[{:student_name=>"", :date=>""}]}], @books)
-
+      {:title=>"Pride and Prejudice",
+            :rental_details=>[{:student_name=>"",
+               :date=>""}]}],
+       @books)
   end
 
   def test_change_rental_dets
