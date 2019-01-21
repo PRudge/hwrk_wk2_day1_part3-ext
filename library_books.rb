@@ -5,7 +5,7 @@ class Library
   # need an initialize to grab the input to the class
   def initialize(books)
     # initialize is a ruby function
-    @books = books
+    @books = books # we have our array of books hashes
   end
 
   def get_book_dets(book_title)
@@ -27,19 +27,20 @@ class Library
      book = Hash.new()
      book[:title] = book_title
      book[:rental_details]= []
+     # book[:rental_details][:student_name]=""
+     # book[:rental_details][:date]=""
+     # p "the book is: #{book}"
      @books << book
   end
 
   def change_rental_dets(book_title, student, date)
     for book in @books
       if book[:title] == book_title
-        book[rental_details:][:student_name] = student
-        book[rental_details:][:date] = date
+        book[:rental_details][:student_name] = student
+        book[:rental_details][:date] = date
+        return book
       end
-    end 
-
-
+    end
   end
-
 
 end

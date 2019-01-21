@@ -30,7 +30,6 @@ class TestLibraryBooks < MiniTest::Test
         }
       }
     ]
-
     # create a new instance of the Library class
     @my_books = Library.new(@books)
 
@@ -46,31 +45,40 @@ class TestLibraryBooks < MiniTest::Test
         date: "01/12/16"
       }
       }, book_dets)
-    end
+  end
 
-    def test_get_rental_dets
-      rental_book_dets = @my_books.get_rental_dets("a fine balance")
-      assert_equal({
-        student_name: "Lucy",
-        date: "01/12/17"
-        }, rental_book_dets)
-      end
+  def test_get_rental_dets
+    rental_book_dets = @my_books.get_rental_dets("a fine balance")
 
-      def test_add_book
-        @my_books.add_book("Pride and Prejudice")
-        assert_equal(3, @books.length)
-      end
+    assert_equal({
+      student_name: "Lucy",
+      date: "01/12/17"
+      }, rental_book_dets)
 
-      def test_change_rental_dets
-        @my_books.change_rental_dets()
-        assert_equal({
-          title: "a fine balance",
-          rental_details: {
-            student_name: "Julia",
-            date: "01/01/19"
-          }
-        })
+  end
 
-      end
+  def test_add_book
+    @my_books.add_book("Pride and Prejudice")
+    p @books
+    assert_equal([{:title=>"lord of the rings",
+       :rental_details=>{:student_name=>"Jeff", :date=>"01/12/16"}},
+        {:title=>"a fine balance",
+          :rental_details=>{:student_name=>"Lucy", :date=>"01/12/17"}},
+          {:title=>"Pride and Prejudice", :rental_details=>[]}], @books)
 
-    end # end of the test class
+  end
+
+  def test_change_rental_dets
+    book_dets = @my_books.change_rental_dets("a fine balance", "Julia", "01/01/19")
+
+    assert_equal({
+      title: "a fine balance",
+        rental_details: {
+          student_name: "Julia",
+          date: "01/01/19"
+      }
+    }, book_dets)
+
+  end
+
+end # end of the test class
