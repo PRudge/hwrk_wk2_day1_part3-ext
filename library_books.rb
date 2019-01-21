@@ -22,15 +22,16 @@ class Library
     end
   end
 
-  def add_book(book_title)
+  def add_book(book_title, student_name, date)
     # add a book hash (book) to the array...
+
      book = Hash.new()
      book[:title] = book_title
-     book[:rental_details]= []
-     # book[:rental_details][:student_name]=""
-     # book[:rental_details][:date]=""
-     # p "the book is: #{book}"
+
+     book[:rental_details]= [student_name: "", date: ""]
+p book
      @books << book
+
   end
 
   def change_rental_dets(book_title, student, date)

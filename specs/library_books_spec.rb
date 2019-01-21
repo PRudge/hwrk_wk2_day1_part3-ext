@@ -58,13 +58,17 @@ class TestLibraryBooks < MiniTest::Test
   end
 
   def test_add_book
-    @my_books.add_book("Pride and Prejudice")
-    p @books
+    @my_books.add_book("Pride and Prejudice","","")
+
+
     assert_equal([{:title=>"lord of the rings",
-       :rental_details=>{:student_name=>"Jeff", :date=>"01/12/16"}},
-        {:title=>"a fine balance",
-          :rental_details=>{:student_name=>"Lucy", :date=>"01/12/17"}},
-          {:title=>"Pride and Prejudice", :rental_details=>[]}], @books)
+       :rental_details=>{:student_name=>"Jeff",
+         :date=>"01/12/16"}},
+          {:title=>"a fine balance",
+            :rental_details=>{:student_name=>"Lucy",
+               :date=>"01/12/17"}},
+          {:title=>"Pride and Prejudice",
+            :rental_details=>[{:student_name=>"", :date=>""}]}], @books)
 
   end
 
