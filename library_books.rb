@@ -10,8 +10,9 @@ class Library
 
   def get_book_dets(book_title)
     for book in @books
-      if book[:title] == book_title
-        return book # returns the book hash
+      # returns the book hash
+      return book  if book[:title] == book_title
+
       end
     end
   end
