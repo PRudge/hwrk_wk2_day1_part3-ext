@@ -26,7 +26,10 @@ class Library
 
      book = Hash.new()
      book[:title] = book_title
-     book[:rental_details] = {student_name: "", date: ""} #add empty fields
+     book[:rental_details] = {student_name: student_name, date: date}
+     #add empty fields
+     # book[:rental_details][:student_name] = ""
+     # book[:rental_details][:date] = ""
 
      @books << book
   end
