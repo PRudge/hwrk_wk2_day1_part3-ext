@@ -60,8 +60,8 @@ class TestLibraryBooks < MiniTest::Test
             :rental_details=>{:student_name=>"Lucy",
                :date=>"01/12/17"}},
       {:title=>"Pride and Prejudice",
-            :rental_details=>[{:student_name=>"",
-               :date=>""}]}],
+            :rental_details=>{:student_name=>"",
+               :date=>""}}],
        @books)
   end
 
